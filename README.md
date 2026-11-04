@@ -26,4 +26,11 @@ cd code && python3 check_encoding.py        # Python 3 with numpy; about 20 seco
 cd paper && bash build.sh && latexmk -pdf main.tex
 ```
 
+## Archive
+
+| Release | DOI |
+|---|---|
+| v1.0.0 | [10.5281/zenodo.23934035](https://doi.org/10.5281/zenodo.23934035) |
+| all versions (concept) | [10.5281/zenodo.23934034](https://doi.org/10.5281/zenodo.23934034) |
+
 GitHub-related contact: egspl@proton.me.

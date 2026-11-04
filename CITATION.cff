@@ -8,6 +8,11 @@ authors:
     affiliation: "Electro-Gravitational Space Propulsion Laboratory (EGSPL), Bhubaneswar"
 license: MIT
 version: 1.0.0
+doi: 10.5281/zenodo.23934035
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23934034
+    description: Concept DOI of all versions
 date-released: 2026-11-04
 repository-code: "https://github.com/creelie/pvsnp"
 keywords:

@@ -1,0 +1,11 @@
+{
+  "title": "LaTeX source and verification code for the paper Superlinear Wire Lower Bounds toward P versus NP",
+  "upload_type": "software",
+  "description": "Source, figures and verification programs of the paper Superlinear Wire Lower Bounds toward P versus NP. The paper surveys the P versus NP problem and proves that the satisfying inputs of circuits whose gates are arbitrary functions of at most s^{4/5} inputs or threshold, exact, modular and symmetric gates with weights of at most s^{2/3} bits can be counted in time 2^{O(s/sqrt(log s))}, and that a language in E^NP needs more than cN sqrt(log N) wires in such circuits. The program code/check_encoding.py checks the finite statements exactly (27 checks). The P versus NP problem remains open.",
+  "creators": [
+    {"name": "Bhattacharjee, Deep", "orcid": "0000-0003-0466-750X", "affiliation": "Electro-Gravitational Space Propulsion Laboratory (EGSPL), Bhubaneswar"}
+  ],
+  "license": "MIT",
+  "keywords": ["P versus NP", "circuit lower bounds", "tensor networks"],
+  "access_right": "open"
+}

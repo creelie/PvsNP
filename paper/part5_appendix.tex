@@ -1,0 +1,411 @@
+
+\appendix
+
+%%==================================================================
+\section{Proof of the contraction theorem}\label{app:contraction}
+%%==================================================================
+
+This appendix gives the proof of Theorem~\ref{thm:contraction}. The argument
+and its parameters are those of \oai{} \cite[Appendix D.4]{OAI26}; the
+presentation follows theirs step by step, with some computations written out
+in more detail. Throughout, $\log$ is to base two and $\ln$ is natural. A call
+of the recursion receives a bipartite network with $M$ edges and a working
+precision $p$, and returns its contraction modulo $2^p$. One side of the
+network is called the row side and the other the column side; the ports of
+row vertices are \emph{row ports} and those of column vertices \emph{column
+ports}.
+
+\subsection{The coefficient ring}\label{app:ring}
+Put $\lambda=\lceil\log s\rceil$ and $e=4\lambda$. Choose a monic $f\in\Z[U]$ of
+degree $e$ with coefficients in $\{0,1\}$ whose reduction modulo two is
+irreducible; such $f$ exists because $\F_{2^e}$ exists, and it is found in time
+polynomial in $s$ by testing the $2^e=s^{O(1)}$ candidates for divisibility by
+every monic polynomial of degree at most $e/2$ over $\F_2$ \cite{vzGG13}. Put
+\[
+\cO=\Z_{(2)}[U]/(f),\qquad K=\Q[U]/(f),\qquad \cA=\cO[V]/(V^\ell),\qquad
+\cA_p=\cA/(2^p),
+\]
+where $\Z_{(2)}$ is the ring of rationals with odd denominator. Since $f$ is
+irreducible modulo two it is irreducible over $\Q$, so $K$ is a field. For
+$x\in K^\times$ let $\vtwo(x)$ be the least two-adic valuation of its coordinates
+in the basis $1,U,\dots,U^{e-1}$. Then $\cO/2\cO=\F_{2^e}$, and factoring out the
+least coordinate valuation shows $\vtwo(xy)=\vtwo(x)+\vtwo(y)$. An element of
+$\cO$ that is nonzero modulo two is a unit, since the determinant of its
+multiplication matrix is odd. Arithmetic in $\cA_p$, with coordinates in the
+bases $1,U,\dots,U^{e-1}$ and $1,V,\dots,V^{\ell-1}$ stored as residues in
+$[0,2^p)$, takes time and space polynomial in $s,p,\ell$; units are inverted by
+inversion modulo two and Newton lifting. Divisibility in $\cA$ is coordinatewise.
+
+The lifts to $\cO$ of the $2^e\ge s^4$ elements of $\F_{2^e}$, taken with
+coordinates in $\{0,1\}$, have pairwise differences that are units; Lagrange
+interpolation at fewer than $s^4$ of them is therefore valid over every
+$\cA_p$. The original entries lie in $B_{P_0,\ell}\subseteq\cA_{P_0}$, and the
+contraction, a polynomial in the entries, is computed in $\cA_{P_0}$ and read off
+in $B_{P_0,\ell}$.
+
+When the precision grows, each tensor entry is lifted separately: an entry
+specified modulo $2^{p_c}$ is replaced by the element of $\cA$ whose coordinates
+are its integer representatives in $[0,2^{p_c})$. This lift is not additive, but
+it is fixed: every tensor carries the precision $p_c$ at which it was created,
+and every later evaluation uses the same representatives. Precisions strictly
+increase along a recursive path, so the representatives are canonical at every
+later precision.
+
+\subsection{Parameters and packing}\label{app:packing}
+All inequalities below hold for $s$ larger than a constant depending on
+$C,A,b$; smaller sizes are handled by direct summation. Put
+\[
+H=\Bigl\lceil\frac{s}{\lfloor\sqrt\lambda\rfloor}\Bigr\rceil,\qquad r=64,\qquad
+\varepsilon=\frac1{128\cdot1024},\qquad\Delta=\lceil s^{9/10}\rceil.
+\]
+A call with $M\le H$ edges is a \emph{leaf} and is evaluated by summing over
+all $2^M$ edge assignments. At an \emph{active} call at depth $d$ (the root has
+depth zero) put
+\begin{equation}\label{eq:params}
+u=u_d=\Bigl\lfloor\frac{\varepsilon\lambda}{2^d}\Bigr\rfloor,\qquad
+a=a_d=2\sum_{j=0}^du_j,\qquad L=2^a,\qquad \Darr=r^{2a}.
+\end{equation}
+It will be shown that every child of a call with $M$ edges has at most $M/8$
+edges and maximum degree at most $\Delta$. Hence on every active path
+$H<M\le Cs8^{-d}$, so $8^d<C\lfloor\sqrt\lambda\rfloor+1$ and
+$d\le\frac16\log\lambda+O(1)$. Consequently, on every active call,
+\begin{equation}\label{eq:inv1}
+u=\Theta(\lambda/2^d),\qquad \lambda^{4/5}\le u\le M,\qquad a\le4\varepsilon\lambda,
+\qquad L,\Darr\le s^{1/1000},
+\end{equation}
+since $2^d=O(\lambda^{1/6})$, $a\le4u_0$ and $\Darr=2^{12a}\le2^{48\varepsilon\lambda}$.
+In particular
+\begin{equation}\label{eq:inv2}
+M\ge2\Darr^2\Delta,\qquad M\ge L\Darr,\qquad 2L\le\Delta,
+\end{equation}
+because $M>H\ge s^{1-o(1)}$ while the right sides are $O(s^{9/10+1/500})$.
+
+\begin{lemma}[Packing]\label{lem:packing}
+Assume \eqref{eq:inv2}. One can label the vertices on each side by elements of
+$[r]^a$ and place the edges into \emph{packets} of $L$ slots so that:
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=2.2em]
+\item there are at most $3M/L$ packets, every edge occupies the same slot at its
+row end and at its column end, and unused slots carry no ports;
+\item in every packet and every coordinate $c\in[a]$ the unordered pair of row
+and column symbols is fixed, and when the two symbols differ, bit $c$ of the
+slot number records which of them is the row symbol;
+\item for every coordinate and every symbol, at most $3M/r$ real ports on each
+side belong to vertices with that symbol in that coordinate.
+\end{enumerate}
+The construction takes time and space polynomial in $s+L$.
+\end{lemma}
+
+\begin{proof}
+The \emph{pair label} of an edge is the pair (row label, column label), one of
+$\Darr$ values; let $X_\gamma$ be the number of edges with pair label $\gamma$.
+For independent uniform labels,
+\[
+\mathbb E\sum_\gamma\Bigl(X_\gamma-\frac M{\Darr}\Bigr)^2
+=\sum_{e,e'}\Bigl(\Pr[\gamma(e)=\gamma(e')]-\frac1{\Darr}\Bigr),
+\]
+the sum running over ordered pairs of edges. If $e$ and $e'$ have disjoint
+endpoints their labels are independent and the term vanishes. At most $2M\Delta$
+ordered pairs share an endpoint, and each term is at most one, so the
+expectation is at most $2M\Delta$. Labelling the vertices one at a time and
+choosing, among the $r^a$ labels of the next vertex, one that does not increase
+the conditional expectation \cite{Rag88} gives a deterministic labelling with
+the same bound; each conditional expectation is a sum over pairs of edges of
+probabilities involving at most four vertices, so it is computed exactly in
+polynomial time. Every load is then at most $M/\Darr+\sqrt{2M\Delta}$. Pad every
+pair-label class to $H_{\mathrm{pad}}$ slots, the largest load rounded up to a
+multiple of $L$; by \eqref{eq:inv2},
+\[
+H_{\mathrm{pad}}\le\frac M{\Darr}+\sqrt{2M\Delta}+L\le\frac{3M}{\Darr}.
+\]
+Group the pair labels by the unordered pair of symbols in each coordinate. If
+$a'$ coordinates of a group have unequal symbols, the group consists of $2^{a'}$
+pair labels, which differ in orientation. Form packets of $L$ slots by taking
+$2^{a-a'}$ slots of each of these $2^{a'}$ labels; this is possible since
+$H_{\mathrm{pad}}$ is divisible by $L$. Number the positions of a packet from $0$
+to $L-1$ so that bit $c$ gives the orientation when the pair in coordinate $c$ is
+unequal and indexes copies otherwise, with one convention throughout a packet.
+There are $H_{\mathrm{pad}}\Darr/L\le3M/L$ packets. In a fixed coordinate a fixed
+symbol is the row symbol of exactly $1/r$ of the padded pair labels, so it has at
+most $H_{\mathrm{pad}}\Darr/r\le3M/r$ real row ports, and likewise for columns.
+\end{proof}
+
+\subsection{A Cauchy deformation}\label{app:cauchy}
+Fix an active call, its packets and its lifted tensors. Put
+\[
+S=\{-L,-L+1,\dots,L-1\},\qquad C(T)=\prod_{t\in S}(T-t),\qquad \alpha=2^{a+1}.
+\]
+For a row slot $x$ and a column slot $y$ of the same packet put
+\begin{equation}\label{eq:W}
+W_{xy}(T)=\frac{C(T)}{C'(0)\,(T-(y-x))},
+\end{equation}
+a polynomial of degree $2L-1$ over $\Q$, since $y-x\in S$; entries between
+different packets are zero, and $W$ is restricted to real ports. At $T=0$ the
+diagonal entries are one and the others vanish, because $C(T)/T\to C'(0)$ and
+every other quotient keeps the factor $T$; so $W(0)$ is the identification of
+row and column ports given by the edges. Let $A(Y)$ be the product of the
+lifted row tensors on a row assignment $Y\in\{0,1\}^M$ and $B(X)$ the product of
+the lifted column tensors on a column assignment $X$. With $l_0(z)=1-z$ and
+$l_1(z)=z$ put
+\begin{equation}\label{eq:F}
+F(T)=\sum_{X,Y\in\{0,1\}^M}A(Y)B(X)\prod_{\text{row ports }x}l_{Y_x}\bigl((W(T)X)_x\bigr).
+\end{equation}
+Its coefficients lie in $K[V]/(V^\ell)$, its degree is at most $M(2L-1)$, and,
+since $\prod_xl_{Y_x}(X_x)=[Y=X]$, $F(0)=\sum_XA(X)B(X)$ is the contraction of the
+lifted tensors.
+
+\begin{lemma}[Integrality]\label{lem:integral}
+For every $t\in S$ the entries of $W(t+\alpha z)$ lie in $\cO[z]$ and
+$F(t+\alpha z)\in\cA[z]$. Given the coordinates of $\zeta$ modulo $2^p$, each
+$W_{xy}(t+\alpha\zeta)\bmod2^p$ is computed in time polynomial in $s,p$.
+\end{lemma}
+
+\begin{proof}
+$S$ is a complete residue system modulo $2^{a+1}$. For $q\ne t$ in $S$ one has
+$\vtwo(t-q)\le a$, and the number of $q$ with $\vtwo(t-q)=k$ does not depend on
+$t$; hence $\vtwo(C'(t))=\vtwo(C'(0))$. In
+\[
+\frac{C(t+\alpha z)}{C'(0)}=\frac{\alpha z\prod_{q\ne t}(t-q+\alpha z)}{C'(0)}
+\]
+each factor $t-q+\alpha z$ is divisible coefficientwise by $2^{\vtwo(t-q)}$, so
+after cancelling these powers against the denominator the polynomial is
+divisible by $2^{a+1}$. Formula~\eqref{eq:W} omits the factor indexed by
+$q=t-(y-x)$. If $y-x=t$ the omitted factor is $\alpha z$ and the rest is
+integral; otherwise $\alpha z$ remains, the omitted factor has content
+$2^{\vtwo(t-y+x)}$ with $\vtwo(t-y+x)\le a$, and the quotient is still
+integral. Substituting in \eqref{eq:F} gives the claim for $F$. To evaluate,
+divide each factor $t-q+\alpha z$ by $2^{\vtwo(t-q)}$, cancel the remaining
+powers of two against $C'(0)$, invert its odd part modulo $2^p$, and multiply
+the $O(L)$ factors at $\zeta$.
+\end{proof}
+
+\subsection{Tapered Hermite recovery}\label{app:hermite}
+\begin{lemma}[Recovery]\label{lem:recovery}
+Let $1\le u\le a$ and $M\ge u$, and put $h=\lceil3M/u\rceil$. For $t\in S\setminus\{0\}$
+let
+\[
+i=\vtwo(t),\qquad q_t=q(i)=h\max(0,u-i),\qquad D_t=L/2^i .
+\]
+Let $F\in(K[V]/(V^\ell))[T]$ have degree at most $M(2L-1)$, with $F(0)\in\cA$ and
+$F(t+\alpha z)\in\cA[z]$ for all $t\in S$. Then $F(0)\bmod2^p$ is determined by,
+and computable in polynomial time from, the first $q_t$ coefficients of
+\[
+F(t+\alpha z)\bmod2^{p_t},\qquad p_t=p+8hD_t+8M(a+1),
+\]
+for the $t$ with $q_t>0$.
+\end{lemma}
+
+\begin{proof}
+There are $L$ odd points in $S$, each with $q_t=hu\ge3M$, so
+$\sum_{t\ne0}q_t\ge3ML>M(2L-1)$; also $q_t\le hu\le4M$. For $t$ with $q_t>0$ put
+\[
+E_t(T)=\prod_{q\in S\setminus\{0,t\}}\Bigl(\frac{T-q}{t-q}\Bigr)^{q_q}.
+\]
+We claim
+\begin{equation}\label{eq:hermite}
+F(0)=\sum_{t:\,q_t>0}E_t(0)\,\Bigl[\frac{F(t+\alpha z)}{E_t(t+\alpha z)}\Bigr]_{<q_t}\Bigl(-\frac t\alpha\Bigr),
+\end{equation}
+where $[\cdot]_{<q}$ truncates a power series in $z$ below degree $q$. Replace $0$
+by an indeterminate $T$ and $-t/\alpha$ by $(T-t)/\alpha$ on the right. The
+summand of $t$ agrees with $F$ to order $q_t$ at $T=t$ and vanishes to order
+$q_{t'}$ at every other node $t'$, and its degree is below $\sum q_t$. So the
+difference with $F$ is divisible by $\prod_{t\ne0}(T-t)^{q_t}$ and has smaller
+degree, hence vanishes; this is Hermite interpolation by the Chinese remainder
+theorem \cite[Section 5.6]{vzGG13}.
+
+Each factor of $E_t(t+\alpha z)$ is a power of $1+\alpha z/(t-q)$, which is
+integral with constant term one, so the reciprocal truncated below $q_t$ is
+integral and the quotient in \eqref{eq:hermite} loses no precision.
+
+Fix $i=\vtwo(t)$ and $D=D_t$. Points $q$ with $\vtwo(q)<i$ have
+$\vtwo(t-q)=\vtwo(q)$ and contribute nothing to $\vtwo(E_t(0))$. For $1\le j\le
+a-i$ there are $D/2^j$ points with $\vtwo(q)=i+j$, for which $\vtwo(t-q)=i$, and
+$D/2^j$ points with $\vtwo(t-q)=i+j$, for which $\vtwo(q)=i$; these exhaust the
+points of valuation at least $i$ other than $t$, since the nonzero differences
+have valuation at most $a$. Therefore
+\begin{equation}\label{eq:vEt}
+\vtwo(E_t(0))=\sum_{q\ne0,t}q_q\bigl(\vtwo(q)-\vtwo(t-q)\bigr)
+=D\sum_{j=1}^{a-i}\frac j{2^j}\bigl(q(i+j)-q(i)\bigr)\ \ge\ -6Dh,
+\end{equation}
+because $q(i+j)-q(i)\ge-hj$ and $\sum_{j\ge1}j^2/2^j=6$. Evaluating a polynomial of
+degree below $q_t\le4M$ at $-t/\alpha$, whose valuation is at least $-(a+1)$,
+loses at most $4M(a+1)$ powers of two. Hence replacing each quotient coefficient
+by any lift of its residue modulo $2^{p_t}$ changes the summand by an element of
+$2^p\cA$, since $p_t-p>6Dh+4M(a+1)$. The multipliers $E_t(0)(-t/\alpha)^j$ are
+rationals of polynomial bit length, so the combination is carried out exactly
+with a common denominator, after which the powers of two are cancelled and the
+result reduced modulo $2^p$.
+\end{proof}
+
+The tapering of the multiplicities is what makes the precision affordable. If
+every level below $u$ received the same multiplicity $q_*=\Theta(M)$, the level
+$i=u-1$ would lose $q_*D\sum_jj/2^j=\Theta(MD)$ powers of two in
+\eqref{eq:vEt}; with multiplicities decreasing by $h=\Theta(M/u)$ per level the
+loss is $O(MD/u)$.
+Figure~\ref{fig:taper} compares the two choices.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_taper.png}
+\caption{Multiplicities of the Hermite nodes by two-adic level, for $u=8$ and
+$h=3$. The tapered choice $q(i)=h\max(0,u-i)$ of Lemma~\ref{lem:recovery}
+(front) against a flat choice $q_*=hu$ on every level below $u$ (back). Both
+give the odd points the multiplicity $hu$ that the degree count needs; only the
+tapered one keeps the loss \eqref{eq:vEt} at $O(Dh)$.}\label{fig:taper}
+\end{figure}
+
+At a call of precision $p$ apply Lemma~\ref{lem:recovery} with the parameters
+\eqref{eq:params}. For each $t$ with $q_t>0$ obtain the whole polynomial
+$F(t+\alpha z)\bmod2^{p_t}$ by evaluating it at $M(2L-1)+1<s^4$ of the
+interpolation points of Section~\ref{app:ring} and interpolating; the values
+$F(t+\alpha\zeta)$ are computed in Section~\ref{app:modes} by child calls of
+precision $p_t$. The precisions satisfy
+\begin{equation}\label{eq:prec}
+p\le s\lambda^{O(1)}2^{a_{d-1}},\qquad p_t=O_C(MD_t/u).
+\end{equation}
+The first bound holds at the root, where $p=P_0\le Cs$, and the increments
+$8hD_t+8M(a+1)$ along a path are at most $s\lambda^{O(1)}2^{a_d}$ at depth $d$,
+with $O(\log\lambda)$ depths. For the second, $q_t>0$ forces $i<u$, so
+$D_t\ge2^{a_d-u}=2^{a_{d-1}+u}$; since $u\ge\lambda^{4/5}$, the factor $2^u$
+exceeds every fixed power of $\lambda$, and both $p$ and $8M(a+1)$ are
+$O(MD_t/u)$, as is $8hD_t$. All precisions are polynomial in $s$ because
+$a\le4\varepsilon\lambda$.
+
+\subsection{Modes for interactions between groups}\label{app:modes}
+Fix $t$ with $i=\vtwo(t)<u$, put $D=L/2^i$, fix an interpolation point $\zeta$, and
+work modulo $2^{p_t}$ with $T=t+\alpha\zeta$. Group the vertices on both sides by
+their symbol in coordinate $i$; there are $r$ groups. Entries of $W(T)$ whose two
+ports lie in the same group are \emph{local}.
+
+The matrix $W(t)$ is local. Indeed $W_{xy}(t)=0$ unless $y=x+t$, and adding $t$,
+whose lowest set bit is bit $i$, flips bit $i$ of the slot number. When the pair
+of symbols of the packet in coordinate $i$ is unequal, bit $i$ of a slot
+records the orientation, so a row slot and a column slot lie in the same group
+exactly when their bits $i$ differ; when the pair is equal, the whole packet is
+one group.
+
+In a packet with unequal pair, write the column slots as $y=y_0+2^{i+1}j$ with
+$0\le y_0<2^{i+1}$; the group of $y$ depends only on $y_0$, so these
+\emph{tiles} are monochromatic. If a row $x$ and the tile of $y_0$ lie in
+different groups, then $\vtwo(t-y_0+x)\le i$, for otherwise $y_0\equiv x+t\bmod
+2^{i+1}$ and their bits $i$ would differ. The same holds with $T$ in place of $t$,
+since $\vtwo(\alpha\zeta)>i$. Expanding geometrically,
+\begin{equation}\label{eq:modes}
+W_{xy}(T)\equiv\sum_{\substack{b\ge0\\ b+1<p_t}}
+\frac{C(T)}{C'(0)(T-y_0+x)}\Bigl(\frac{2^{i+1}}{T-y_0+x}\Bigr)^bj^b
+\pmod{2^{p_t}}.
+\end{equation}
+The first factor has valuation at least $a+1-i\ge1$ by the proof of
+Lemma~\ref{lem:integral}, and the ratio has valuation at least one, so the term
+of index $b$ is divisible by $2^{b+1}$ and the remainder of the geometric series
+by $2^{p_t}$. For each packet, tile and $b$ introduce a \emph{mode} $Z$ of weight
+$w_Z=b+1$, standing for
+\[
+L_Z(X)=\sum_{\text{real columns }y\text{ in the tile}}j^bX_y\qquad(j^0=1).
+\]
+Its \emph{source} is the group of the tile and its \emph{target} the other group
+of the packet's pair. By \eqref{eq:modes}, each row form $(W(T)X)_x$ is its
+local part plus a combination of the modes targeted at the group of $x$, with
+coefficients divisible by $2^{w_Z}$. A packet has $2^{i+1}$ tiles, so there are at
+most
+\begin{equation}\label{eq:modecount}
+\frac{3M}L\,2^{i+1}=\frac{6M}D
+\end{equation}
+modes of each weight.
+
+Expand the product in \eqref{eq:F} as a polynomial in the modes. The coefficient
+of a monomial $Z^\beta$ is divisible by $2^{\sum_Zw_Z\beta_Z}$, so modulo $2^{p_t}$
+only the exponent vectors with
+\begin{equation}\label{eq:budget}
+\sum_Zw_Z\beta_Z<p_t
+\end{equation}
+contribute. Their number is $\exp(O(\sqrt{Mp_t/D}))=\exp(O_C(M/\sqrt u))$. Indeed,
+for $\theta>0$ the generating function bounds the number by
+\[
+\exp\Bigl(\theta p_t+\frac{6M}D\sum_{j\ge1}-\ln(1-e^{-\theta j})\Bigr),\qquad
+\sum_{j\ge1}-\ln(1-e^{-\theta j})=\sum_{h\ge1}\frac1{h(e^{\theta h}-1)}\le\frac{\pi^2}{6\theta},
+\]
+and $\theta=\sqrt{M/(Dp_t)}$ gives $\exp((1+\pi^2)\sqrt{Mp_t/D})$; then
+\eqref{eq:prec} gives $\sqrt{Mp_t/D}=O(M/\sqrt u)$. The vectors are enumerated
+with polynomial delay by choosing exponents one variable at a time within the
+remaining budget.
+
+\subsection{The child networks}\label{app:children}
+For one vector $\beta$ satisfying \eqref{eq:budget} and one group $g\in[r]$, the
+child network $\cN_{g,\beta}$ is built as follows. On one side put all current
+vertices of group $g$, from both sides, with their ports and their lifted
+entries reduced modulo $2^{p_t}$. On the other side put one vertex for each
+packet, joined to every port of group $g$ in that packet; its ports are the row
+bits $Y$ and column bits $X$ of group $g$ in the packet. Its tensor is the
+coefficient of $\prod_ZZ^{\beta_Z}$, over the modes $Z$ of the packet targeted at
+$g$, in the product of the row factors $l_{Y_x}$ of group $g$ in the packet,
+written in the local column bits and the formal modes, multiplied by
+$\prod_ZL_Z(X)^{\beta_Z}$ over the modes of the packet whose source is $g$. Empty
+products are one; a positive exponent on a mode with no target rows, or on a
+mode whose tile has no real column, gives zero.
+
+Every mode has one source and one target, the coefficient extraction factors
+over the groups of the rows, and the substitution of each mode uses only bits of
+its source group. Distributing the product in \eqref{eq:F} and summing the bits
+of each group independently therefore gives
+\begin{equation}\label{eq:children}
+F(t+\alpha\zeta)\equiv\sum_{\beta}\ \prod_{g=1}^rZ(\cN_{g,\beta})\pmod{2^{p_t}},
+\end{equation}
+the sum over the vectors satisfying \eqref{eq:budget}; the omitted monomials
+vanish modulo $2^{p_t}$.
+
+By Lemma~\ref{lem:packing}(3) a child has at most $6M/r=3M/32<M/8$ edges. Old
+vertices keep their degrees, and a packet vertex has at most $2L\le\Delta$ ports,
+so the invariants of Section~\ref{app:packing} hold inductively. A packet entry
+is computed by expanding a product of at most $L$ affine factors, each with
+polynomially many terms, in time $\exp(O(L\log s))=\exp(O(s^{9/10}))$ and
+polynomial space; powers $L_Z(X)^{\beta_Z}$ are computed by repeated squaring. A
+new tensor is described by its packet data, $\beta$, $\zeta$ and its creation
+precision, and old tensors keep their descriptions, shared by reference, so
+entry routines do not compose along the recursion.
+
+\subsection{Proof of Theorem~\ref{thm:contraction}}\label{app:proof}
+Embed the entries in $\cA_{P_0}$ and run the recursion. At an active call, for
+every $t$ with $q_t>0$ and every interpolation point, compute
+\eqref{eq:children} from the child contractions, interpolate $F(t+\alpha z)$,
+and apply Lemma~\ref{lem:recovery}; at a leaf sum directly. Correctness follows
+by induction from Lemmas~\ref{lem:integral} and~\ref{lem:recovery} and
+\eqref{eq:children}.
+
+A call has polynomially many nodes, points and groups, so by
+\eqref{eq:budget} an active call at depth $d$ has at most
+\[
+s^{O(1)}\exp\Bigl(O_C\Bigl(\frac s{\sqrt\lambda}\Bigl(\frac{\sqrt2}8\Bigr)^d\Bigr)\Bigr)
+\]
+children, using $M\le Cs8^{-d}$ and $u_d=\Theta(\lambda/2^d)$. Over the
+$O(\log\lambda)$ depths the number of calls is at most
+$\exp(O_C(s/\sqrt\lambda)+O(\lambda\log\lambda))=\exp(O_C(s/\sqrt\lambda))$. A leaf
+costs $2^H$ assignments with polynomially many entry evaluations each, that is
+$\exp(O_C(H)+O_{C,A}(s^{9/10}))(s+L)^{O(1)}=\exp(O_{C,A}(s/\sqrt\lambda))(s+L)^{O(1)}$.
+All other work is polynomial per generated term, which proves the time bound.
+For space, traverse the recursion depth first, keeping at each of the
+$O(\log\lambda)$ levels the Taylor data of the current call, its indices and its
+new tensor descriptions, all of polynomial size by \eqref{eq:prec}. Finally read
+off the coordinates of the result in $B_{P_0,\ell}$. \qed
+
+%%==================================================================
+\section{Programs that check the finite identities}\label{app:checks}
+%%==================================================================
+
+The archive contains a program written in Python with exact integer and
+rational arithmetic. It builds the network $\cN(C)$ of
+Section~\ref{sec:counting} for random circuits in $\cK(F,\beta)$ with all gate
+kinds of Definition~\ref{def:gates}, including big weighted gates split into
+blocks, and compares its contraction with exhaustive counting; it checks the
+bounds of Lemma~\ref{lem:size} on the edges and degrees, the reduction of
+Corollary~\ref{cor:ilp} on random zero-one programs, the identity
+\eqref{eq:vEt} and the bound $\vtwo(E_t(0))\ge-6Dh$ for all admissible small
+parameters, the integrality of Lemma~\ref{lem:integral}, the Hermite formula
+\eqref{eq:hermite} on random polynomials, and the properties (1) to (3) of
+Lemma~\ref{lem:packing} on random bipartite graphs with small parameters. For
+the degree bound of Lemma~\ref{lem:size} it evaluates the largest possible
+degree $\max\bigl(K+b,\lceil s/K\rceil b+1\bigr)$ for every $s$ up to
+$3\cdot10^6$: the bound $\lceil s^{9/10}\rceil$ and the inequality $b\le K$ hold
+for every $s\ge1416$, which is the constant of that lemma in this range. The
+program runs in about twenty seconds and reports $27$ checks passed and none
+failed. These checks confirm the finite statements; the proofs in the text do
+not depend on them.

@@ -1,0 +1,508 @@
+
+\part{The problem and the state of knowledge}
+
+%%==================================================================
+\section{Definitions, history and equivalent forms}\label{sec:history}
+%%==================================================================
+
+\subsection{Time, nondeterminism and reductions}
+Hartmanis and Stearns \cite{HS65} measured the difficulty of a problem by the
+running time of the best Turing machine that decides it and proved the first
+hierarchy theorem: for time-constructible $t$, more time decides more
+languages. A nondeterministic machine may branch at each step and accepts when
+some branch accepts. The class $\NP=\bigcup_k\NTIME(n^k)$ is the set of
+languages $\mathcal L$ for which there are a polynomial $p$ and a polynomial-time
+relation $R$ with
+\[
+x\in\mathcal L\iff \exists y\in\{0,1\}^{p(|x|)}\ R(x,y).
+\]
+The string $y$ is a \emph{certificate}. A polynomial-time \emph{reduction} from
+$\mathcal L$ to $\mathcal L'$ is a polynomial-time map $g$ with $x\in\mathcal
+L\iff g(x)\in\mathcal L'$, and $\mathcal L'$ is $\NP$-complete if it lies in
+$\NP$ and every language in $\NP$ reduces to it.
+
+Cook \cite{Coo71} and, independently, Levin \cite{Lev73} proved that the
+satisfiability of propositional formulas is $\NP$-complete.\footnote{Levin's
+note treats search problems (``universal sequential search problems'') and
+gives six complete ones, among them tiling and set cover; Cook works with
+decision problems and Turing reductions. Karp's reductions are the many-one
+reductions used today.} The proof writes the computation of a nondeterministic
+machine on $x$ as a table of $p(|x|)^2$ cells and expresses its correctness by
+clauses that each read a bounded window of the table. Karp \cite{Kar72} reduced
+satisfiability to twenty-one problems of combinatorics and optimisation,
+including clique, vertex cover, Hamiltonian cycle, three-dimensional matching,
+knapsack and zero-one integer programming, and Garey and Johnson \cite{GJ79}
+catalogued several hundred more. Consequently $\Pc=\NP$ if and only if any one
+of these problems has a polynomial-time algorithm.
+
+Edmonds \cite{Edm65} had argued, in his paper on matchings, that polynomial time
+is the right notion of a ``good'' algorithm. G\"odel asked von Neumann in 1956 whether
+the existence of proofs of length $n$ for a given formula can be decided in time
+linear or quadratic in $n$, which is the bounded form of the same question; the
+letter is translated and discussed by Sipser \cite{Sip92}.
+
+\subsection{What is known to separate}
+Diagonalisation separates classes defined by the same resource at different
+amounts. The deterministic hierarchy of Hartmanis and Stearns, and the
+nondeterministic hierarchies of Cook \cite{Coo73}, Seiferas, Fischer and Meyer
+\cite{SFM78} and \v{Z}\'ak \cite{Zak83}, show for instance
+$\NTIME(2^n)\ne\NTIME(2^{n/2})$; \v{Z}\'ak's form, which separates unary
+languages, is the one used in Section~\ref{sec:lower}. Between different
+resources very little is separated. Paul, Pippenger, Szemer\'edi and Trotter
+\cite{PPST83} proved $\DTIME(n)\ne\NTIME(n)$ for multitape machines, a statement
+that does not extend to $n^k$. Hopcroft, Paul and Valiant \cite{HPV77} showed
+that time $t$ can be simulated in space $t/\log t$, and Williams \cite{Wil25}
+improved this to space $\sqrt{t\log t}$. Fortnow, Lipton, van Melkebeek and
+Viglas \cite{FLMV05} proved that satisfiability cannot be decided
+simultaneously in time $n^c$ and space $n^{o(1)}$ for any $c$ below the golden
+ratio.
+
+For space, nondeterminism costs at most a square: Savitch \cite{Sav70} proved
+that nondeterministic space $s$ is contained in deterministic space $s^2$, so
+$\mathsf{PSPACE}=\mathsf{NPSPACE}$. No analogue is known for time; the best
+deterministic simulation of $\NTIME(t)$ takes time $2^{O(t)}$.
+
+\subsection{Structure inside $\NP$}
+If $\Pc\ne\NP$, Ladner \cite{Lad75} showed that $\NP$ contains problems that are
+neither in $\Pc$ nor $\NP$-complete. Some natural problems were long thought to
+be of this kind; primality was placed in $\Pc$ by Agrawal, Kayal and Saxena
+\cite{AKS04}. Counting is much stronger than deciding: Valiant \cite{Val79b}
+proved the permanent of a zero-one matrix $\#\Pc$-complete although the
+corresponding decision problem, existence of a perfect matching, is in $\Pc$,
+and Toda \cite{Tod91} showed that the whole polynomial hierarchy reduces to
+$\#\Pc$. The PCP theorem of Arora and Safra \cite{AS98} and of Arora, Lund,
+Motwani, Sudan and Szegedy \cite{ALMSS98}, with Dinur's combinatorial proof
+\cite{Din07}, shows that every language in $\NP$ has certificates that a
+randomised verifier checks by reading a constant number of bits; equivalently,
+approximating the maximum fraction of satisfiable clauses of a $3$-CNF within
+some constant factor is already $\NP$-hard. Impagliazzo \cite{Imp95} described
+five possible worlds, from $\Pc=\NP$ to the existence of public-key
+cryptography, that are consistent with present knowledge.
+
+\subsection{Circuits}
+A Boolean circuit with $n$ inputs is a directed acyclic graph whose sources are
+the inputs and whose other vertices, the gates, compute Boolean functions of
+their predecessors. The \emph{size} of a circuit over the binary basis is its
+number of gates; for gates of larger fan-in the right measure is the number of
+\emph{wires}, the sum of the fan-ins. A language $\mathcal L$ has circuits of
+size $s(n)$ if for each $n$ some circuit of that size decides $\mathcal L$ on
+inputs of length $n$; the class $\Ppoly$ consists of the languages with
+circuits of polynomial size. Since $\Pc\subseteq\Ppoly$, a proof that some
+language in $\NP$ lies outside $\Ppoly$ would prove $\Pc\ne\NP$. The circuit
+form is attractive because it removes uniformity, so that only combinatorics
+remains, and because $\NP\not\subseteq\Ppoly$ is believed to be true for
+satisfiability itself. Kannan \cite{Kan82} proved that $\Sigma_2\Pc$ is not
+contained in $\SIZE(n^k)$ for any fixed $k$, and Santhanam \cite{San09}
+proved the same for Merlin--Arthur languages with one bit of advice.
+
+\subsection{The Millennium Problem}
+The Clay Mathematics Institute listed the question among its seven Millennium
+Prize Problems in 2000 \cite{Clay}; the official problem description is by
+Cook. Fortnow \cite{For09} and Aaronson \cite{Aar16} survey the evidence,
+Wigderson \cite{Wig19} places it within mathematics as a whole, and the
+textbooks of Arora and Barak \cite{AB09} and of Jukna \cite{Juk12} give the
+technical background used below. Gasarch's polls \cite{Gas19} record a
+steadily growing majority of researchers who expect $\Pc\ne\NP$.
+
+%%==================================================================
+\section{Three barriers}\label{sec:barriers}
+%%==================================================================
+
+Three theorems show that the methods that settle other questions cannot settle
+this one by themselves. Each barrier is a statement about proofs, and each has
+been circumvented in some restricted setting.
+
+\subsection{Relativization}
+Baker, Gill and Solovay \cite{BGS75} constructed oracles $A$ and $B$ with
+$\Pc^A=\NP^A$ and $\Pc^B\ne\NP^B$. Any argument that treats machines as black
+boxes, such as diagonalisation and simulation, gives the same answer relative
+to every oracle and therefore cannot decide the question. The hierarchy
+theorems relativize; the Cook--Levin theorem, which uses the local structure of
+computations, does not relativize in its strong forms, and the arguments of
+Section~\ref{sec:algorithms} use it through local reductions.
+
+\subsection{Natural proofs}
+Razborov and Rudich \cite{RR97} observed that the known circuit lower bounds
+proceed by a property $\Gamma$ of truth tables that is \emph{useful} (no
+function with the property has small circuits), \emph{large} (a fraction
+$2^{-O(n)}$ of all functions has it) and \emph{constructive} (it can be
+decided in time polynomial in $2^n$ from the truth table). They proved that a
+natural property useful against $\Ppoly$ would break pseudorandom functions
+that are secure against circuits of size $2^{n^\epsilon}$, whose existence
+follows from standard cryptographic assumptions. Arguments by diagonalisation
+are not natural, since they single out one function; Williams \cite{Wil16}
+showed that $\NEXP\not\subseteq\mathcal C$ is in fact equivalent to the
+existence of a property useful against $\mathcal C$ that is constructive in a
+weak, nondeterministic sense, which locates the barrier exactly.
+
+\subsection{Algebrization}
+Aaronson and Wigderson \cite{AW09} extended relativization to algebraic
+oracles, which also capture the arithmetisation used in interactive proofs.
+They proved that every known non-relativizing technique of that kind
+algebrizes, and that resolving $\Pc$ versus $\NP$ needs non-algebrizing
+methods.
+
+\subsection{Locality}
+A fourth, newer observation concerns hardness magnification. Oliveira and
+Santhanam \cite{OS18}, and earlier Allender and Kouck\'y \cite{AK10}, found
+problems for which a slightly superlinear lower bound would imply a
+superpolynomial one. Chen, Hirahara, Oliveira, Pich, Rajgopal and Santhanam
+\cite{CHOPRS22} proved that the known slightly superlinear lower bounds hold
+also for circuits with small oracle gates of unbounded function, while the
+magnified statements fail for such circuits; so the methods that prove the weak
+bounds cannot prove the magnified ones. This is the \emph{locality barrier}.
+
+\begin{remark}\label{rem:barrierhere}
+The lower bound of Theorem~B is proved by diagonalisation against a
+nondeterministic class combined with a satisfiability algorithm. It names a
+single language, so it is not natural, and it uses the local structure of
+computations through the reduction of Lemma~\ref{lem:jmv}.
+Section~\ref{sec:limits} discusses its relation to the locality barrier.
+\end{remark}
+
+%%==================================================================
+\section{Circuit lower bounds known today}\label{sec:circuits}
+%%==================================================================
+
+Figure~\ref{fig:landscape} arranges the results of this section by model and
+strength.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{fig_landscape.png}
+\caption{Explicit circuit lower bounds by model. The height of a bar is the
+order of growth of the best bound, on a scale from linear ($cn$) to exponential
+($2^{n^\epsilon}$); ``barely superlinear'' means $n\cdot\omega(1)$ but
+$n^{1+o(1)}$. For circuits of unbounded depth over a complete basis (orange),
+only linear bounds were known for explicit languages before \cite{OAI26};
+\cite[Corollary 1.4]{OAI26} and Theorem~B give $cn\sqrt{\log n}$. The bounds for
+arbitrary gates of bounded depth are for operators with $n$ outputs.}\label{fig:landscape}
+\end{figure}
+
+\subsection{General circuits}
+Shannon's counting \cite{Sha49} shows that almost every function needs about
+$2^n/n$ gates, and Lupanov's construction (see \cite[Chapter 1]{Juk12})
+matches this. For explicit functions the only method for unbounded depth has
+been gate elimination: fixing an input variable removes a few gates, and
+repeating the step $n$ times gives a linear bound. Schnorr \cite{Sch80} and
+Blum \cite{Blu84} pushed the constant to three (Schnorr announced $3n$, and
+Blum, noting a gap in one lemma, proved $3n-o(n)$ for a modification of Paul's
+function), Find, Golovnev, Hirsch and
+Kulikov \cite{FGHK16} to $3+\frac1{86}$, and Li and Yang \cite{LY22} to
+$3.1n-o(n)$ for a function in $\Pc$.\footnote{Over the de Morgan basis, where
+negations are free and the gates are AND and OR, Iwama and Morizumi
+\cite{IM02} proved $5n-o(n)$.} Golovnev, Hirsch, Knop and Kulikov
+\cite{GHKK18} showed that natural forms of gate elimination cannot prove much
+more than linear bounds, and Golovnev, Kulikov, Smal and Tamaki \cite{GKST18}
+turned gate elimination into satisfiability algorithms for linear-size
+circuits.
+
+\subsection{Formulas}
+A formula is a circuit whose gates have fan-out one. Random restrictions
+shrink de Morgan formulas: H\aa stad \cite{Has98} proved shrinkage exponent
+two, so Andreev's function requires formulas of size $n^{3-o(1)}$, and Tal
+\cite{Tal14} sharpened the lower-order terms to a polylogarithmic factor.
+Karchmer and Wigderson \cite{KW90} identified formula depth with the
+communication complexity of a game; with it they proved that monotone formulas
+for connectivity need depth $\Omega(\log^2 n)$, and Raz and McKenzie
+\cite{RM99} separated the levels of the monotone $\mathsf{NC}$ hierarchy.
+
+\subsection{Bounded depth}
+Ajtai \cite{Ajt83} and Furst, Saxe and Sipser \cite{FSS84} proved that parity is
+not in $\AC$, the class of polynomial-size circuits of constant depth with
+unbounded fan-in AND and OR gates. Yao \cite{Yao85} and H\aa stad \cite{Has86}
+made the bound exponential: depth $d$ requires size $2^{\Omega(n^{1/(d-1)})}$.
+Rossman \cite{Ros08} proved that detecting a $k$-clique needs size
+$\omega(n^{k/4})$ at every constant depth. With parity gates added, Razborov
+\cite{Raz87} and Smolensky \cite{Smo87} proved exponential lower bounds for
+majority, and for counting modulo $q$ in circuits with gates modulo a prime
+$p\nmid q$.
+
+\subsection{Monotone circuits}
+Razborov's method of approximations gave superpolynomial lower bounds for
+clique in monotone circuits, made exponential by Alon and Boppana \cite{AB87}
+(see \cite[Chapter 9]{Juk12}). Tardos \cite{Tar88} showed that the gap between
+monotone and general circuits can be exponential, so monotone bounds do not
+transfer.
+
+\subsection{$\ACC$ and the algorithmic method}
+For circuits of constant depth with gates counting modulo arbitrary $m$, the
+class $\ACC$, no lower bound followed from the methods above. Williams
+\cite{Wil14} proved $\NEXP\not\subseteq\ACC$ by a satisfiability algorithm for
+$\ACC$ circuits that beats exhaustive search, combined with the argument of
+\cite{Wil13} described in Section~\ref{sec:algorithms}. Murray and Williams
+\cite{MW20} extended it to nondeterministic quasi-polynomial time, and
+Williams \cite{Wil14b} to $\ACC$ circuits with a layer of threshold gates at the
+bottom.
+
+\subsection{High classes}
+Exponential classes with alternation reach maximum circuit size. Chen,
+Hirahara and Ren \cite{CHR24} proved that a language in symmetric exponential
+time $\mathsf{S_2E}$ with one bit of advice requires circuits of size about
+$2^n/n$, and Li \cite{Li24} removed the advice; this class lies between
+$\ENP$ and $\mathsf{ZPE}^{\NP}$ by Cai's theorem \cite{Cai07}. For $\ENP$
+itself, whether every language has circuits of linear size was open until
+\cite[Corollary C.1]{OAI26}.
+
+\subsection{Threshold circuits}
+A threshold gate outputs $[\sum_iw_iy_i\ge\theta]$. Polynomial-size threshold
+circuits of constant depth form $\TC$, a class that contains all of the
+arithmetic of integers and for which no superpolynomial lower bound is known
+even at depth two for functions in $\NEXP$. The known results concern size near
+linear. Hajnal, Maass, Pudl\'ak and Szegedy \cite{HMPST93} separated depth two
+from depth three for majority circuits. Impagliazzo, Paturi and Saks
+\cite{IPS97} proved that parity needs $n^{1+c\theta^{-d}}$ wires in threshold
+circuits of depth $d$, for constants $c>0$ and $\theta>1$. Kane and Williams
+\cite{KW16} proved superlinear gate and superquadratic wire bounds for depth
+two. Chen, Santhanam and Srinivasan \cite{CSS18} proved average-case lower
+bounds and satisfiability algorithms for threshold circuits of depth $d$ with
+$n^{1+\epsilon_d}$ wires, and Impagliazzo, Paturi and Schneider \cite{IPS13}
+gave a satisfiability algorithm for sparse depth-two threshold circuits.
+Every one of these bounds degrades with the depth and gives nothing at
+unbounded depth.
+
+\subsection{Arbitrary gates}
+When gates may compute any function, a single gate of fan-in $n$ computes every
+Boolean function, so lower bounds concern either many outputs or bounded fan-in.
+For operators with $n$ outputs, Valiant's graph-theoretic method \cite{Val77},
+Pudl\'ak's analysis of communication in bounded depth \cite{Pud94}, the bounds
+of Radhakrishnan and Ta-Shma for depth-two superconcentrators \cite{RTS00}, and
+the explicit operators of Cherukhin \cite{Che11} and Jukna \cite{Juk10} give
+superlinear wire bounds that hold only at bounded depth. Theorem~B is a bound of
+the second kind: its table gates have fan-in at most $N^{3/4}$ and its depth is
+unrestricted.
+
+\subsection{Algebraic circuits}
+Valiant \cite{Val79a} introduced the algebraic classes $\mathsf{VP}$ and
+$\mathsf{VNP}$ and showed that the permanent is complete for $\mathsf{VNP}$; the
+conjecture $\mathsf{VP}\ne\mathsf{VNP}$ is the algebraic analogue of $\Pc\ne\NP$.
+Limaye, Srinivasan and Tavenas \cite{LST21} proved the first superpolynomial
+lower bounds against algebraic circuits of every constant depth. Kabanets and
+Impagliazzo \cite{KI04} showed that derandomising polynomial identity testing
+implies lower bounds of this kind, which ties the algebraic question to
+pseudorandomness.
+
+\subsection{Range avoidance}
+Given a circuit $C:\{0,1\}^n\to\{0,1\}^{n+1}$, find a string outside its range.
+Korten \cite{Kor21} showed that this search problem captures explicit
+constructions, among them hard truth tables; Ren, Santhanam and Wang
+\cite{RSW22} studied its complexity, and Ilango, Li and Williams \cite{ILW23}
+connected it to indistinguishability obfuscation. The lower bounds of
+\cite{CHR24,Li24} come from an algorithm for range avoidance with an $\NP$
+oracle.
+
+%%==================================================================
+\section{Algorithms, the exponential time hypothesis and its refutation}\label{sec:algorithms}
+%%==================================================================
+
+\subsection{Exponential algorithms for satisfiability}
+Exhaustive search decides satisfiability of a formula with $n$ variables in
+time $2^n$ times a polynomial. For $k$-CNF formulas much better is known.
+Sch\"oning's random walk \cite{Sch99} runs in time $(2-2/k)^n$; the algorithm of
+Paturi, Pudl\'ak, Saks and Zane \cite{PPSZ05} improves this, and Hertli
+\cite{Her14} proved that its bounds for formulas with a unique solution hold in
+general, about $1.308^n$ for $3$-SAT. Williams \cite{Wil05} solved maximum
+two-constraint satisfaction in time $2^{\omega n/3}$ by fast matrix
+multiplication, where $\omega<2.38$ is the exponent of matrix multiplication.
+
+\subsection{The hypotheses}
+Impagliazzo and Paturi \cite{IP01} formulated the \emph{exponential time
+hypothesis} (ETH): there is $\delta>0$ such that $3$-SAT cannot be decided in
+time $2^{\delta n}$. The \emph{strong} hypothesis (SETH) asserts that for every
+$\epsilon>0$ some $k$ makes $k$-SAT require time $2^{(1-\epsilon)n}$.
+Impagliazzo, Paturi and Zane \cite{IPZ01} proved the sparsification lemma, by
+which ETH is equivalent to the same statement for formulas with $O(n)$
+clauses, and Calabro, Impagliazzo and Paturi \cite{CIP06,CIP09} related clause
+width to clause density and extended the hypotheses to circuits of small depth.
+A large part of fine-grained complexity derives conditional lower bounds from
+these hypotheses.
+
+\subsection{Williams' algorithmic method}
+Williams \cite{Wil13} proved that a satisfiability algorithm for a circuit
+class that is only slightly faster than exhaustive search yields a lower bound
+for that class. The argument runs as follows (Figure~\ref{fig:pipeline}).
+Suppose that every language in $\NEXP$ has small circuits in the class. By the
+easy-witness lemma of Impagliazzo, Kabanets and Wigderson \cite{IKW02}, every
+satisfiable instance then has a witness whose bits are computed by a small
+circuit. A nondeterministic machine guesses such a circuit, composes it with a
+succinct description of the instance, and verifies the witness by running the
+fast satisfiability algorithm on the composed circuit. This solves every
+language of $\NTIME(2^n)$ in nondeterministic time below $2^n$, contradicting
+the nondeterministic hierarchy theorem. The survey \cite{Wil14c} describes the
+many variants. The succinct description is a \emph{local reduction}: Jahanjou,
+Miles and Viola \cite{JMV15} showed that the clauses of the Cook--Levin formula
+for a computation of length $T$ can be indexed by $\log T+O(\log\log T)$ bits
+in such a way that each clause is computed from its index by a circuit of
+quasi-linear size whose output bits each depend on few index bits.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{fig_pipeline.png}
+\caption{Williams' argument as used in Section~\ref{sec:lower}. A unary
+language that is hard for nondeterministic time $2^{n/2}$ is reduced locally to
+a succinct $3$-CNF; a small circuit for the witness language $\Wl$ is guessed,
+three copies of it read the variables of an indexed clause, and the test
+circuit is checked by the counting algorithm of Theorem~A.}\label{fig:pipeline}
+\end{figure}
+
+Santhanam \cite{San10} gave satisfiability algorithms for formulas, Seto and
+Tamaki \cite{ST13} for formulas over the full binary basis, and Chen, Kabanets,
+Kolokolova, Shaltiel and Zuckerman \cite{CKKSZ15} showed how lower-bound proofs
+by restriction yield such algorithms in general.
+
+\subsection{The refutation of ETH}
+In October 2026 \oai{} released the preprint \cite{OAI26}, whose main theorem
+counts the satisfying assignments of a $k$-CNF with $n$ variables and $m$
+clauses in time
+\[
+(n+m)^{O_k(1)}\,2^{O_k(n\log\log n/\sqrt{\log n})},
+\]
+and in time $2^{O(n/\sqrt{\log n})}$ when $m=O(n)$. This contradicts ETH, and
+with the sparsification lemma it removes the basis of many conditional lower
+bounds. The fixed-density bound rests on a theorem about tensor networks,
+\cite[Theorem D.1]{OAI26}, restated below as Theorem~\ref{thm:contraction}: a
+bipartite Boolean tensor network with $O(s)$ edges and degrees at most
+$s^{9/10}$ can be contracted in time $2^{O(s/\sqrt{\log s})}$. Its proof
+deforms the identification of the wires by a Cauchy matrix, expands the
+interactions between groups of vertices in variables whose two-adic valuations
+grow with their weight, and recovers the value at the undeformed point by
+Hermite interpolation with tapered multiplicities; Appendix~\ref{app:contraction}
+gives the full argument. Contraction of tensor networks had been used for the
+simulation of quantum circuits by Markov and Shi \cite{MS08}, with running time
+exponential in the treewidth; the theorem of \oai{} needs no bound on the
+treewidth.
+
+Combining the fixed-density algorithm with Williams' method, \cite[Corollary
+1.4]{OAI26} proves that some language in $\ENP$ needs more than $cn\sqrt{\log
+n}$ gates of fan-in two for infinitely many $n$. This was the first superlinear
+lower bound of any kind for $\ENP$. Weighted counting, Max-Cut profiles and
+exact optimisation follow from the same algorithm \cite{BhaHex26,Bha26eth}.
+
+\subsection{What the refutation does not give}
+A subexponential algorithm for $3$-SAT does not place $\NP$ in $\Pc$: the time
+$2^{O(n/\sqrt{\log n})}$ is still superpolynomial. Nor does it give a
+superpolynomial circuit lower bound, since Williams' method needs an algorithm
+whose saving over $2^n$ is measured against the number $n$ of inputs of
+circuits of polynomial size, and the algorithms of \cite{OAI26} are fast only
+when the circuit has $O(n\sqrt{\log n})$ wires.
+
+%%==================================================================
+\section{Other programmes}\label{sec:otherroutes}
+%%==================================================================
+
+\subsection{Geometric complexity theory}
+Mulmuley and Sohoni \cite{MS01} proposed to separate the permanent from the
+determinant, and so $\mathsf{VNP}$ from $\mathsf{VP}$, by representation
+theory: the orbit closure of the padded permanent would not be contained in
+that of the determinant, and an \emph{obstruction}, an irreducible
+representation occurring in the coordinate ring of one closure and not of the
+other, would witness this. Mulmuley \cite{Mul12} describes the programme.
+B\"urgisser, Ikenmeyer and Panova \cite{BIP19} proved that occurrence
+obstructions, those detected by the mere presence of a representation, do not
+exist in the required range; obstructions by multiplicities remain possible.
+
+\subsection{Proof complexity}
+Cook and Reckhow \cite{CR79} showed that $\NP\ne\coNP$ if and only if no
+propositional proof system has polynomial-size proofs of all tautologies; since
+$\Pc=\NP$ implies $\NP=\coNP$, superpolynomial lower bounds for every proof
+system would separate $\Pc$ from $\NP$. Haken \cite{Hak85} proved that
+resolution needs exponential size for the pigeonhole principle, and
+Ben-Sasson and Wigderson \cite{BSW01} related resolution size to width.
+Kraj\'i\v{c}ek's monograph \cite{Kra19} surveys the field; for Frege systems
+no superpolynomial bound is known.
+
+\subsection{Meta-complexity}
+The minimum circuit size problem MCSP asks, given a truth table and a number
+$s$, whether the function has a circuit of size $s$. Kabanets and Cai
+\cite{KC00} began its modern study; it is in $\NP$, and its $\NP$-hardness is open.
+Hirahara \cite{Hir18} gave a non-black-box reduction from worst case to average
+case for approximating it, and \cite{Hir22} proved $\NP$-hardness of a partial
+version. These questions concern the complexity of complexity itself and are
+closely tied to natural proofs and to magnification.
+
+\subsection{Hardness versus randomness}
+Nisan and Wigderson \cite{NW94} built pseudorandom generators from hard
+functions, and Impagliazzo and Wigderson \cite{IW97} proved $\mathsf{P}=
+\mathsf{BPP}$ if some language in $\Ec$ requires circuits of size $2^{\Omega(n)}$.
+Conversely, derandomization implies lower bounds \cite{KI04,Wil16}. A lower
+bound of the strength of Theorem~B is far too weak for derandomization.
+
+\subsection{Magnification}
+The results of \cite{AK10,OS18,CHOPRS22} identify problems, many of them
+variants of MCSP, for which a lower bound of the form $n^{1+\epsilon}$ in some
+model implies a superpolynomial bound in a stronger model. The locality
+barrier of Section~\ref{sec:barriers} explains why the known methods have not
+reached the magnified thresholds.
+
+%%==================================================================
+\section{Repositories and the literature catalogue}\label{sec:repositories}
+%%==================================================================
+
+\subsection{Collections of claims}
+Woeginger's page \cite{Woe16}, maintained until 2016, lists the announced
+solutions that came to his attention, with entries dated from 1986 to 2016.
+Parsing the page gives 114 entries with a stated verdict: 62 claim $\Pc=\NP$, 49 claim $\Pc\ne\NP$, two
+claim that the question is unprovable and one that it is undecidable
+(Figure~\ref{fig:claims}). None has been accepted. The first entry already
+illustrates a lesson that became a theorem: polynomial linear programs for the
+travelling salesman problem were refuted by Yannakakis \cite{Yan91}, who
+proved that every symmetric linear program expressing the problem has
+exponential size.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{fig_claims.png}
+\caption{Announced solutions of the $\Pc$ versus $\NP$ problem listed by
+Woeginger \cite{Woe16}, by year and verdict (114 dated entries). None of them
+is accepted.}\label{fig:claims}
+\end{figure}
+
+\subsection{Archives}
+The Electronic Colloquium on Computational Complexity \cite{ECCC} and the
+Complexity Zoo \cite{Zoo}, a catalogue of several hundred complexity
+classes and their known inclusions, are the standard reference points. The
+preprint \cite{OAI26} and its Lean formalisation are in the public repository
+of \oai{}. Archived code accompanies the author's related papers on counting
+\cite{Bha26eth}, on Weil classes \cite{Bha26weil} and on Tate--Shafarevich
+groups \cite{Bha26bsd}; the programs that check the finite identities of this
+paper are archived in the same way (Declarations).
+
+\subsection{A catalogue of arXiv papers}
+To measure the field, nineteen keyword queries were run against the arXiv
+interface, one for each topic of Sections~\ref{sec:history}
+to~\ref{sec:otherroutes}: $\Pc$ versus $\NP$, circuit lower bounds, natural
+proofs, relativization, algebrization, geometric complexity theory, hardness
+magnification, MCSP, meta-complexity, proof complexity, the exponential time
+hypotheses, threshold circuits, satisfiability algorithms for circuits, formula
+lower bounds, $\ACC$, $\mathsf{VP}$ versus $\mathsf{VNP}$, range avoidance, PCPs
+and tensor network contraction. The union contains 6,480 papers, from 1993 to
+the end of October 2026.\footnote{The queries combine words in the abstract
+with category filters, and some are broad: the words ``meta'' and
+``complexity'' also match papers in machine learning. Of the 6,480 records,
+1,452 have primary category \texttt{cs.CC} and 2,617 lie in the core categories
+of theoretical computer science and discrete mathematics; the figure and the
+counts below use the core set. The catalogue, the queries and the program
+that produced them are in the archive.} Figure~\ref{fig:catalogue} shows the
+number of papers in the core categories by year and topic. The exponential
+time hypotheses (657 papers), the $\Pc$ versus $\NP$ question itself (436),
+circuit lower bounds (407) and proof complexity (332) are the largest topics;
+the yearly number of papers grew from about thirty in 2003 to more than three
+hundred in each of 2025 and 2026 in the core set.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_catalogue.png}
+\caption{Papers of the arXiv catalogue in the core categories, by year of first
+version and by topic (2,617 papers; a paper matching several topics is counted
+once for each).}\label{fig:catalogue}
+\end{figure}
+
+\subsection{Where the problem stands}
+No proof that $\Pc\ne\NP$ is known, and no known method is expected to give
+one without new ideas, since each of the three barriers excludes a family of
+techniques. The strongest explicit lower bounds for unrestricted circuits are
+linear for functions in $\NP$ and, since \cite{OAI26}, of order $n\sqrt{\log
+n}$ for a function in $\ENP$. Part~II extends the latter bound to circuits of
+threshold, modular, symmetric and large table gates.
+
+\part{New results}

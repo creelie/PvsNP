@@ -1,0 +1,95 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[kerning=true]{microtype}
+\usepackage{enumitem,booktabs,graphicx,xcolor}
+\usepackage[a4paper,margin=1.12in]{geometry}
+\usepackage{placeins}
+\graphicspath{{./}{figures/}}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,
+urlcolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={Superlinear Wire Lower Bounds toward P versus NP},pdfauthor={Deep Bhattacharjee}}
+\emergencystretch=2em
+\numberwithin{equation}{section}
+\raggedbottom
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{theoremA}{Theorem A}
+\newtheorem*{theoremB}{Theorem B}
+\newtheorem*{theoremC}{Theorem C}
+\newtheorem*{theoremD}{Theorem D}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\SIZE}{SIZE}
+\DeclareMathOperator{\NTIME}{NTIME}
+\DeclareMathOperator{\DTIME}{DTIME}
+\DeclareMathOperator{\thr}{thr}
+\DeclareMathOperator{\ex}{ex}
+\DeclareMathOperator{\md}{mod}
+\DeclareMathOperator{\wires}{w}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\Pc}{\mathsf{P}}
+\newcommand{\NP}{\mathsf{NP}}
+\newcommand{\coNP}{\mathsf{coNP}}
+\newcommand{\ENP}{\mathsf{E}^{\mathsf{NP}}}
+\newcommand{\Ec}{\mathsf{E}}
+\newcommand{\NEXP}{\mathsf{NEXP}}
+\newcommand{\ACC}{\mathsf{ACC}^0}
+\newcommand{\AC}{\mathsf{AC}^0}
+\newcommand{\TC}{\mathsf{TC}^0}
+\newcommand{\Ppoly}{\mathsf{P}/\mathsf{poly}}
+\newcommand{\Wl}{\mathsf{W}}
+\newcommand{\oai}{OpenAI}
+\newcommand{\vtwo}{v_2}
+\newcommand{\Darr}{D_{\mathrm{arr}}}
+\newcommand{\zenodoDOI}{10.5281/zenodo.0000000}
+
+\title[Superlinear wire lower bounds]{Superlinear Wire Lower Bounds toward P versus NP}
+\author{Deep Bhattacharjee}
+\address{Electro-Gravitational Space Propulsion Laboratory (EGSPL), Bhubaneswar, Odisha 751030, India}
+\address{Formerly, University of Calcutta (Heramba Chandra College), 23/49 Gariahat Road, Golpark, Kolkata 700029, West Bengal, India}
+\email{d.bhattacharjee@erl-forschung.de}
+\email{itsdeep@live.com}
+\email{egspl@proton.me \textup{(GitHub-related contact, \url{https://github.com/creelie})}}
+\urladdr{https://orcid.org/0000-0003-0466-750X}
+\thanks{Corresponding author: Deep Bhattacharjee, d.bhattacharjee@erl-forschung.de.}
+\date{4 November 2026}
+
+\begin{document}
+
+\begin{abstract}
+The satisfying inputs of a Boolean circuit with $s$ inputs and wires in all
+can be counted in time $2^{O(s/\sqrt{\log s})}$ when every gate is either an
+arbitrary function of at most $s^{4/5}$ inputs or a threshold, exact, modular or
+symmetric gate of any fan-in with weights of at most $s^{2/3}$ bits.
+Consequently a language in $\ENP$ needs more than $cN\sqrt{\log N}$ wires in
+circuits on $N$ inputs built from such gates, with arbitrary gates of at most
+$N^{3/4}$ inputs and weights of at most $N^{1/2}$ bits. The
+$\Pc$ versus $\NP$ problem remains open; we survey where these bounds stand
+within it.
+
+\medskip
+\noindent\textbf{Keywords:} P versus NP; circuit lower bounds; tensor networks.
+
+\noindent\textbf{MSC 2020:} 68Q17; 68Q15, 68Q25, 68W40, 03D15.
+\end{abstract}
+
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents

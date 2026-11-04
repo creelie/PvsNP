@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this archive, please cite it as below."
+title: "LaTeX source and verification code for the paper Superlinear Wire Lower Bounds toward P versus NP"
+authors:
+  - family-names: Bhattacharjee
+    given-names: Deep
+    orcid: "https://orcid.org/0000-0003-0466-750X"
+    affiliation: "Electro-Gravitational Space Propulsion Laboratory (EGSPL), Bhubaneswar"
+license: MIT
+version: 1.0.0
+date-released: 2026-11-04
+repository-code: "https://github.com/creelie/pvsnp"
+keywords:
+  - P versus NP
+  - circuit lower bounds
+  - tensor networks

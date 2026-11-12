@@ -1,36 +1,25 @@
-# Superlinear Wire Lower Bounds toward P versus NP
+<p align="center"><img src="assets/banner.svg" alt="Superlinear Wire Lower Bounds for Gates of Fan-In N^(1-δ)" width="100%"></p>
 
-Deep Bhattacharjee. Source, figures and verification programs of the paper.
+<p align="center">
+  <a href="https://doi.org/10.5281/zenodo.23934034"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23934034-22d3ee?style=for-the-badge" alt="DOI"></a>
+  <a href="papers/PvsNPPaper.pdf"><img src="https://img.shields.io/badge/paper-PDF-f472b6?style=for-the-badge" alt="paper"></a>
+  <img src="https://img.shields.io/badge/Lean_4-46_theorems-7c5cff?style=for-the-badge" alt="Lean 4">
+  <img src="https://img.shields.io/badge/Julia-44_checks-34d399?style=for-the-badge" alt="Julia">
+  <img src="https://img.shields.io/badge/license-MIT-f59e0b?style=for-the-badge" alt="MIT">
+</p>
 
-The paper surveys the P versus NP problem and proves four results:
+**Deep Bhattacharjee**
 
-- **Theorem A (counting).** The satisfying inputs of a circuit in K(s^{4/5}, s^{2/3}), whose gates are arbitrary functions of at most s^{4/5} inputs or threshold, exact, modular and symmetric gates of any fan-in with weights of at most s^{2/3} bits, are counted in time 2^{O(s/sqrt(log s))}, where s is the number of inputs plus wires.
-- **Theorem B (lower bound).** A language in E^NP needs more than cN sqrt(log N) wires in K(N^{3/4}, N^{1/2}) for infinitely many N.
-- **Theorem C (zero-one programs).** Counting and exact optimisation over {0,1}^n subject to Ax <= b in time 2^{O(sigma/sqrt(log sigma))}, sigma = n + nnz(A).
-- **Theorem D (transfer).** A 2^{O(s/(log s)^gamma)} satisfiability algorithm for these circuits gives a cN(log N)^gamma wire lower bound.
+| Proved | Open |
+| :--- | :--- |
+| For every δ > 0, a language in E<sup>NP</sup> needs more than c(δ) N √log N wires in circuits of any depth whose gates are arbitrary functions of N<sup>1−δ</sup> inputs, or threshold, exact, modular and symmetric gates with weights of N<sup>1−δ</sup> bits | Superpolynomial lower bounds for E<sup>NP</sup> |
+| Tensor-network contraction at degree s<sup>1−δ</sup>, and counting for these circuits in time 2<sup>O(s/√log s)</sup> | Bounds beyond N √log N by this method |
+| Tree encodings of weighted gates need degree close to the weight length (unconditional) | P versus NP |
 
-Theorem A rests on the tensor network contraction theorem of OpenAI (preprint, October 2026, Theorem D.1), whose proof is reproduced in Appendix A of the paper. P versus NP itself remains open; nothing here separates P from NP.
+| Folder | Contents | Run |
+| :--- | :--- | :--- |
+| [`papers/`](papers) | the paper | |
+| [`lean/`](lean) | Lean 4 project over Mathlib, axiom audit | `cd lean && lake exe cache get && lake build && lake env lean audit.lean` |
+| [`julia/`](julia) | finite statements and constants | `julia julia/run_all.jl` |
 
-## Layout
-
-- `mdpi-preprints/PvsNP_MDPI.pdf`: the paper (30 pages).
-- `mdpi-preprints/TexmdpiPvsNP.zip`: flat LaTeX source (`main.tex`) with its seven PNG figures; it compiles with `pdflatex main.tex` (run twice).
-- `paper/`: the source in parts (`part0_preamble.tex` to `part7_bib.tex`); `build.sh` assembles `main.tex`, `tools/make_bib.py` writes the bibliography, `figures/make_figures.py` draws the figures (200 dpi).
-- `code/check_encoding.py`: exact checks of the finite statements (network contraction against exhaustive counting, the size lemma, the zero-one program reduction, the valuation identity, integrality of the Cauchy deformation, the Hermite formula, the packing lemma); `code/check_output.txt` is its output, `27 checks passed, 0 failed`.
-- `literature/`: the arXiv catalogue of 6,480 records (`arxiv_catalogue.csv`, `fetch_arxiv.py`), the Crossref records of the bibliography DOIs (`crossref_records.json`, `check_dois.py`, `doi_check.txt`), and the tally of Woeginger's list of announced solutions (`woeginger_claims.csv`).
-
-## Running
-
-```
-cd code && python3 check_encoding.py        # Python 3 with numpy; about 20 seconds
-cd paper && bash build.sh && latexmk -pdf main.tex
-```
-
-## Archive
-
-| Release | DOI |
-|---|---|
-| v1.0.0 | [10.5281/zenodo.23934035](https://doi.org/10.5281/zenodo.23934035) |
-| all versions (concept) | [10.5281/zenodo.23934034](https://doi.org/10.5281/zenodo.23934034) |
-
-GitHub-related contact: egspl@proton.me.
+All versions: [10.5281/zenodo.23934034](https://doi.org/10.5281/zenodo.23934034). Contact: egspl@proton.me.

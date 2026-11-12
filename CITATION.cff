@@ -1,21 +1,21 @@
 cff-version: 1.2.0
 message: "If you use this archive, please cite it as below."
-title: "LaTeX source and verification code for the paper Superlinear Wire Lower Bounds toward P versus NP"
+title: "Superlinear Wire Lower Bounds for Gates of Fan-In N^(1-delta)"
 authors:
   - family-names: Bhattacharjee
     given-names: Deep
     orcid: "https://orcid.org/0000-0003-0466-750X"
-    affiliation: "Electro-Gravitational Space Propulsion Laboratory (EGSPL), Bhubaneswar"
+    affiliation: "Formerly, Electro-Gravitational Space Propulsion Laboratory (EGSPL), Bhubaneswar, Odisha 751030, India"
 license: MIT
-version: 1.0.0
-doi: 10.5281/zenodo.23934035
+version: 2.0.0
 identifiers:
   - type: doi
     value: 10.5281/zenodo.23934034
     description: Concept DOI of all versions
-date-released: 2026-11-04
+date-released: 2026-11-12
 repository-code: "https://github.com/creelie/pvsnp"
 keywords:
   - P versus NP
   - circuit lower bounds
   - tensor networks
+  - threshold circuits

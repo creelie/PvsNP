@@ -1,0 +1,54 @@
+(A) contraction of N(C) against exhaustive counting
+PASS contraction equals #C on 120 random circuits (big gates of kinds exact,mod,sym,thr split into blocks)
+PASS all four weighted kinds occurred as big gates
+(B) the Size lemma: edges and degrees
+PASS occurrences sum to G+W+1, trees <= 2 sum d, edges <= 22s on 185 circuits (102 with b <= K and a big gate; largest edges/s = 4.83)
+PASS at least 50 circuits with b <= K have a big gate
+(C) Theorem C: zero-one programs
+PASS feasible counts, binary search and self-reduction on 60 random programs
+(D) identity (eq:vEt) and v2(E_t(0)) >= -6Dh
+PASS v2(C'(t)) = v2(C'(0)) for all t in S, a <= 7
+PASS (eq:vEt) holds in 10328 cases (a <= 7, all u, h in {1,2,3,5})
+PASS v2(E_t(0)) >= -6Dh in the same cases
+(E) Integrality lemma of W(t + alpha z)
+PASS W(0) is the identity for a <= 4
+PASS every coefficient of W_xy(t + alpha z) is 2-integral (1300 cases, a <= 4)
+(F) the Hermite formula (eq:hermite)
+PASS F(0) recovered exactly from truncated expansions (36 random F, a <= 3)
+(G) Packing lemma
+PASS r=2 a=1: largest load 41 <= M/Darr + sqrt(2 M Delta) (exact comparison)
+PASS r=2 a=1: H_pad = 42 <= 3M/Darr = 120//1
+PASS r=2 a=1: (1) 84 packets <= 3M/L, every edge placed once
+PASS r=2 a=1: (2) unordered pairs fixed, orientation in bit c
+PASS r=2 a=1: (3) at most 3M/r ports per symbol and coordinate
+PASS r=3 a=1: largest load 79 <= M/Darr + sqrt(2 M Delta) (exact comparison)
+PASS r=3 a=1: H_pad = 80 <= 3M/Darr = 700//3
+PASS r=3 a=1: (1) 360 packets <= 3M/L, every edge placed once
+PASS r=3 a=1: (2) unordered pairs fixed, orientation in bit c
+PASS r=3 a=1: (3) at most 3M/r ports per symbol and coordinate
+PASS r=2 a=2: largest load 265 <= M/Darr + sqrt(2 M Delta) (exact comparison)
+PASS r=2 a=2: H_pad = 268 <= 3M/Darr = 1575//2
+PASS r=2 a=2: (1) 1072 packets <= 3M/L, every edge placed once
+PASS r=2 a=2: (2) unordered pairs fixed, orientation in bit c
+PASS r=2 a=2: (3) at most 3M/r ports per symbol and coordinate
+PASS H1 U0(1)=30 and U0(22)=172
+PASS H2 2*sqrt(U) <= 2^(4U), 1<=U<=10^4
+PASS H3 4a(a+1) <= 2^(a/2+1), even 20<=a<=10^4
+PASS H4 47 C^(6/5)(u+1)^(8/5) <= 2^(u+1), u >= 16+2log2C
+PASS H5 (1+pi^2)*sqrt(34) < 64
+PASS H6 64*sqrt(17/16)/(1-sqrt(2)/8) < 81
+PASS H7 81/ln(2) < 117
+PASS H8 1+320/7<=47, 6/64<1/8, sum j^2/2^j = 6
+PASS H9 16(117C+4)=1872C+64, (117C+4)sqrt(104)<1194C+41
+PASS H10 counting and lower-bound constants
+PASS H11 (G1)-(G3) for Corollary D.1(delta)
+PASS H12 size lemma degrees for general delta
+PASS H13 transfer membership threshold, delta1 = delta/2
+(I) tree encodings of weighted gates
+PASS I1 I_G equals its exact-gate form on all inputs, G = Q2, Q3
+PASS I2 rank_A(I_G) >= 2^|M| on 654 partitions of Q2, Q3
+PASS I3 split edges >= c1|A| and induced matching >= c1|A|/(2d^2), Q3 and Q4 (25000 sets)
+PASS I4 e(S) <= |S| log|S| / 2 for all 65535 nonempty S in Q4
+PASS I5 constants of the tree theorem, 2 <= k <= 2000
+44 checks passed, 0 failed
+total runtime: 196.9 s

@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="Superlinear Wire Lower Bounds for Gates of Fan-In N^(1-delta)">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1026"/><stop offset="0.55" stop-color="#1b1147"/><stop offset="1" stop-color="#04263a"/></linearGradient>
+<linearGradient id="tt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#22d3ee"><animate attributeName="stop-color" values="#22d3ee;#f472b6;#f59e0b;#22d3ee" dur="9s" repeatCount="indefinite"/></stop><stop offset="1" stop-color="#a78bfa"><animate attributeName="stop-color" values="#a78bfa;#34d399;#22d3ee;#a78bfa" dur="9s" repeatCount="indefinite"/></stop></linearGradient>
+<style>
+.l{stroke-width:1.4;stroke-linecap:round;opacity:.2;animation:p 4s ease-in-out infinite}
+.n{animation:q 4s ease-in-out infinite}
+.g{animation:q 5s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:.12}50%{opacity:.9}}
+@keyframes q{0%,100%{opacity:.45}50%{opacity:1}}
+@media (prefers-reduced-motion: reduce){.l,.n,.g{animation:none;opacity:.6}}
+text{font-family:Georgia,'Times New Roman',serif}
+</style></defs>
+<rect width="1200" height="300" rx="18" fill="url(#bg)"/>
+<line class="l" x1="345" y1="270" x2="64" y2="224" stroke="#34d399" style="animation-delay:1.90s"/>
+<line class="l" x1="309" y1="270" x2="64" y2="224" stroke="#34d399" style="animation-delay:3.17s"/>
+<line class="l" x1="416" y1="270" x2="64" y2="224" stroke="#22d3ee" style="animation-delay:1.79s"/>
+<line class="l" x1="452" y1="270" x2="64" y2="224" stroke="#f472b6" style="animation-delay:0.36s"/>
+<line class="l" x1="165" y1="270" x2="64" y2="224" stroke="#7c5cff" style="animation-delay:2.54s"/>
+<line class="l" x1="94" y1="270" x2="64" y2="224" stroke="#34d399" style="animation-delay:3.93s"/>
+<line class="l" x1="416" y1="270" x2="112" y2="224" stroke="#22d3ee" style="animation-delay:0.76s"/>
+<line class="l" x1="380" y1="270" x2="112" y2="224" stroke="#f472b6" style="animation-delay:2.40s"/>
+<line class="l" x1="130" y1="270" x2="112" y2="224" stroke="#a78bfa" style="animation-delay:1.31s"/>
+<line class="l" x1="58" y1="270" x2="112" y2="224" stroke="#34d399" style="animation-delay:3.37s"/>
+<line class="l" x1="94" y1="270" x2="112" y2="224" stroke="#34d399" style="animation-delay:0.93s"/>
+<line class="l" x1="345" y1="270" x2="112" y2="224" stroke="#f59e0b" style="animation-delay:2.00s"/>
+<line class="l" x1="309" y1="270" x2="159" y2="224" stroke="#a78bfa" style="animation-delay:3.99s"/>
+<line class="l" x1="416" y1="270" x2="159" y2="224" stroke="#22d3ee" style="animation-delay:2.83s"/>
+<line class="l" x1="201" y1="270" x2="159" y2="224" stroke="#f59e0b" style="animation-delay:3.03s"/>
+<line class="l" x1="58" y1="270" x2="207" y2="224" stroke="#22d3ee" style="animation-delay:3.39s"/>
+<line class="l" x1="94" y1="270" x2="207" y2="224" stroke="#a78bfa" style="animation-delay:0.27s"/>
+<line class="l" x1="380" y1="270" x2="207" y2="224" stroke="#22d3ee" style="animation-delay:3.39s"/>
+<line class="l" x1="416" y1="270" x2="207" y2="224" stroke="#22d3ee" style="animation-delay:0.85s"/>
+<line class="l" x1="273" y1="270" x2="207" y2="224" stroke="#22d3ee" style="animation-delay:1.88s"/>
+<line class="l" x1="273" y1="270" x2="255" y2="224" stroke="#22d3ee" style="animation-delay:1.24s"/>
+<line class="l" x1="94" y1="270" x2="255" y2="224" stroke="#22d3ee" style="animation-delay:3.86s"/>
+<line class="l" x1="380" y1="270" x2="255" y2="224" stroke="#22d3ee" style="animation-delay:0.54s"/>
+<line class="l" x1="165" y1="270" x2="255" y2="224" stroke="#7c5cff" style="animation-delay:0.40s"/>
+<line class="l" x1="201" y1="270" x2="255" y2="224" stroke="#22d3ee" style="animation-delay:1.86s"/>
+<line class="l" x1="130" y1="270" x2="255" y2="224" stroke="#a78bfa" style="animation-delay:0.71s"/>
+<line class="l" x1="309" y1="270" x2="303" y2="224" stroke="#a78bfa" style="animation-delay:2.57s"/>
+<line class="l" x1="345" y1="270" x2="303" y2="224" stroke="#22d3ee" style="animation-delay:1.58s"/>
+<line class="l" x1="165" y1="270" x2="303" y2="224" stroke="#f472b6" style="animation-delay:0.00s"/>
+<line class="l" x1="130" y1="270" x2="303" y2="224" stroke="#34d399" style="animation-delay:1.22s"/>
+<line class="l" x1="165" y1="270" x2="351" y2="224" stroke="#34d399" style="animation-delay:2.57s"/>
+<line class="l" x1="130" y1="270" x2="351" y2="224" stroke="#22d3ee" style="animation-delay:0.17s"/>
+<line class="l" x1="273" y1="270" x2="351" y2="224" stroke="#f472b6" style="animation-delay:0.85s"/>
+<line class="l" x1="58" y1="270" x2="398" y2="224" stroke="#22d3ee" style="animation-delay:0.30s"/>
+<line class="l" x1="380" y1="270" x2="398" y2="224" stroke="#f472b6" style="animation-delay:2.33s"/>
+<line class="l" x1="237" y1="270" x2="398" y2="224" stroke="#f472b6" style="animation-delay:0.06s"/>
+<line class="l" x1="201" y1="270" x2="398" y2="224" stroke="#f59e0b" style="animation-delay:1.49s"/>
+<line class="l" x1="273" y1="270" x2="398" y2="224" stroke="#a78bfa" style="animation-delay:0.51s"/>
+<line class="l" x1="380" y1="270" x2="446" y2="224" stroke="#f472b6" style="animation-delay:3.27s"/>
+<line class="l" x1="130" y1="270" x2="446" y2="224" stroke="#f472b6" style="animation-delay:2.90s"/>
+<line class="l" x1="273" y1="270" x2="446" y2="224" stroke="#f472b6" style="animation-delay:2.96s"/>
+<line class="l" x1="416" y1="270" x2="446" y2="224" stroke="#34d399" style="animation-delay:0.79s"/>
+<line class="l" x1="345" y1="270" x2="446" y2="224" stroke="#a78bfa" style="animation-delay:3.53s"/>
+<line class="l" x1="309" y1="270" x2="446" y2="224" stroke="#34d399" style="animation-delay:0.31s"/>
+<line class="l" x1="165" y1="270" x2="71" y2="178" stroke="#34d399" style="animation-delay:3.85s"/>
+<line class="l" x1="446" y1="224" x2="71" y2="178" stroke="#f472b6" style="animation-delay:2.96s"/>
+<line class="l" x1="94" y1="270" x2="71" y2="178" stroke="#a78bfa" style="animation-delay:1.03s"/>
+<line class="l" x1="380" y1="270" x2="132" y2="178" stroke="#a78bfa" style="animation-delay:2.24s"/>
+<line class="l" x1="255" y1="224" x2="132" y2="178" stroke="#34d399" style="animation-delay:2.46s"/>
+<line class="l" x1="237" y1="270" x2="132" y2="178" stroke="#f59e0b" style="animation-delay:0.85s"/>
+<line class="l" x1="130" y1="270" x2="132" y2="178" stroke="#f472b6" style="animation-delay:3.00s"/>
+<line class="l" x1="201" y1="270" x2="132" y2="178" stroke="#22d3ee" style="animation-delay:1.08s"/>
+<line class="l" x1="309" y1="270" x2="132" y2="178" stroke="#a78bfa" style="animation-delay:1.00s"/>
+<line class="l" x1="237" y1="270" x2="194" y2="178" stroke="#34d399" style="animation-delay:2.29s"/>
+<line class="l" x1="380" y1="270" x2="194" y2="178" stroke="#f472b6" style="animation-delay:0.37s"/>
+<line class="l" x1="452" y1="270" x2="194" y2="178" stroke="#f472b6" style="animation-delay:3.56s"/>
+<line class="l" x1="255" y1="224" x2="255" y2="178" stroke="#a78bfa" style="animation-delay:3.64s"/>
+<line class="l" x1="351" y1="224" x2="255" y2="178" stroke="#7c5cff" style="animation-delay:1.25s"/>
+<line class="l" x1="201" y1="270" x2="255" y2="178" stroke="#22d3ee" style="animation-delay:0.09s"/>
+<line class="l" x1="94" y1="270" x2="255" y2="178" stroke="#7c5cff" style="animation-delay:0.30s"/>
+<line class="l" x1="58" y1="270" x2="255" y2="178" stroke="#22d3ee" style="animation-delay:2.92s"/>
+<line class="l" x1="201" y1="270" x2="316" y2="178" stroke="#7c5cff" style="animation-delay:0.18s"/>
+<line class="l" x1="130" y1="270" x2="316" y2="178" stroke="#7c5cff" style="animation-delay:2.95s"/>
+<line class="l" x1="398" y1="224" x2="316" y2="178" stroke="#f472b6" style="animation-delay:3.17s"/>
+<line class="l" x1="159" y1="224" x2="316" y2="178" stroke="#f59e0b" style="animation-delay:1.41s"/>
+<line class="l" x1="452" y1="270" x2="316" y2="178" stroke="#7c5cff" style="animation-delay:1.89s"/>
+<line class="l" x1="112" y1="224" x2="378" y2="178" stroke="#34d399" style="animation-delay:0.06s"/>
+<line class="l" x1="58" y1="270" x2="378" y2="178" stroke="#7c5cff" style="animation-delay:1.53s"/>
+<line class="l" x1="207" y1="224" x2="378" y2="178" stroke="#34d399" style="animation-delay:0.05s"/>
+<line class="l" x1="130" y1="270" x2="439" y2="178" stroke="#f59e0b" style="animation-delay:3.52s"/>
+<line class="l" x1="446" y1="224" x2="439" y2="178" stroke="#7c5cff" style="animation-delay:1.32s"/>
+<line class="l" x1="165" y1="270" x2="439" y2="178" stroke="#7c5cff" style="animation-delay:2.78s"/>
+<line class="l" x1="159" y1="224" x2="83" y2="132" stroke="#22d3ee" style="animation-delay:1.24s"/>
+<line class="l" x1="439" y1="178" x2="83" y2="132" stroke="#22d3ee" style="animation-delay:1.92s"/>
+<line class="l" x1="303" y1="224" x2="83" y2="132" stroke="#f472b6" style="animation-delay:3.83s"/>
+<line class="l" x1="130" y1="270" x2="83" y2="132" stroke="#22d3ee" style="animation-delay:1.99s"/>
+<line class="l" x1="255" y1="224" x2="83" y2="132" stroke="#34d399" style="animation-delay:2.64s"/>
+<line class="l" x1="194" y1="178" x2="83" y2="132" stroke="#a78bfa" style="animation-delay:1.02s"/>
+<line class="l" x1="452" y1="270" x2="169" y2="132" stroke="#7c5cff" style="animation-delay:2.45s"/>
+<line class="l" x1="380" y1="270" x2="169" y2="132" stroke="#34d399" style="animation-delay:0.68s"/>
+<line class="l" x1="201" y1="270" x2="169" y2="132" stroke="#f59e0b" style="animation-delay:2.64s"/>
+<line class="l" x1="207" y1="224" x2="255" y2="132" stroke="#f472b6" style="animation-delay:2.54s"/>
+<line class="l" x1="309" y1="270" x2="255" y2="132" stroke="#f472b6" style="animation-delay:3.52s"/>
+<line class="l" x1="416" y1="270" x2="255" y2="132" stroke="#a78bfa" style="animation-delay:0.88s"/>
+<line class="l" x1="64" y1="224" x2="255" y2="132" stroke="#f59e0b" style="animation-delay:0.84s"/>
+<line class="l" x1="71" y1="178" x2="255" y2="132" stroke="#f472b6" style="animation-delay:1.99s"/>
+<line class="l" x1="345" y1="270" x2="255" y2="132" stroke="#22d3ee" style="animation-delay:2.84s"/>
+<line class="l" x1="378" y1="178" x2="341" y2="132" stroke="#f59e0b" style="animation-delay:3.70s"/>
+<line class="l" x1="237" y1="270" x2="341" y2="132" stroke="#a78bfa" style="animation-delay:1.53s"/>
+<line class="l" x1="165" y1="270" x2="341" y2="132" stroke="#34d399" style="animation-delay:1.98s"/>
+<line class="l" x1="159" y1="224" x2="341" y2="132" stroke="#f59e0b" style="animation-delay:2.87s"/>
+<line class="l" x1="207" y1="224" x2="341" y2="132" stroke="#34d399" style="animation-delay:1.81s"/>
+<line class="l" x1="378" y1="178" x2="427" y2="132" stroke="#34d399" style="animation-delay:0.17s"/>
+<line class="l" x1="94" y1="270" x2="427" y2="132" stroke="#7c5cff" style="animation-delay:1.12s"/>
+<line class="l" x1="345" y1="270" x2="427" y2="132" stroke="#f59e0b" style="animation-delay:1.24s"/>
+<line class="l" x1="345" y1="270" x2="112" y2="86" stroke="#f472b6" style="animation-delay:0.10s"/>
+<line class="l" x1="316" y1="178" x2="112" y2="86" stroke="#f59e0b" style="animation-delay:0.95s"/>
+<line class="l" x1="169" y1="132" x2="112" y2="86" stroke="#f472b6" style="animation-delay:3.19s"/>
+<line class="l" x1="83" y1="132" x2="255" y2="86" stroke="#22d3ee" style="animation-delay:2.74s"/>
+<line class="l" x1="273" y1="270" x2="255" y2="86" stroke="#f472b6" style="animation-delay:3.30s"/>
+<line class="l" x1="194" y1="178" x2="255" y2="86" stroke="#f59e0b" style="animation-delay:0.71s"/>
+<line class="l" x1="255" y1="132" x2="398" y2="86" stroke="#f472b6" style="animation-delay:1.09s"/>
+<line class="l" x1="130" y1="270" x2="398" y2="86" stroke="#f59e0b" style="animation-delay:2.16s"/>
+<line class="l" x1="452" y1="270" x2="398" y2="86" stroke="#34d399" style="animation-delay:2.00s"/>
+<line class="l" x1="316" y1="178" x2="255" y2="40" stroke="#7c5cff" style="animation-delay:1.55s"/>
+<line class="l" x1="159" y1="224" x2="255" y2="40" stroke="#a78bfa" style="animation-delay:1.81s"/>
+<line class="l" x1="237" y1="270" x2="255" y2="40" stroke="#7c5cff" style="animation-delay:3.55s"/>
+<line class="l" x1="378" y1="178" x2="255" y2="40" stroke="#22d3ee" style="animation-delay:1.51s"/>
+<circle class="n" cx="58" cy="270" r="3" fill="#e5e7eb" style="animation-delay:2.28s"/>
+<circle class="n" cx="94" cy="270" r="3" fill="#e5e7eb" style="animation-delay:3.52s"/>
+<circle class="n" cx="130" cy="270" r="3" fill="#e5e7eb" style="animation-delay:3.19s"/>
+<circle class="n" cx="165" cy="270" r="3" fill="#e5e7eb" style="animation-delay:3.78s"/>
+<circle class="n" cx="201" cy="270" r="3" fill="#e5e7eb" style="animation-delay:1.85s"/>
+<circle class="n" cx="237" cy="270" r="3" fill="#e5e7eb" style="animation-delay:2.61s"/>
+<circle class="n" cx="273" cy="270" r="3" fill="#e5e7eb" style="animation-delay:0.82s"/>
+<circle class="n" cx="309" cy="270" r="3" fill="#e5e7eb" style="animation-delay:2.89s"/>
+<circle class="n" cx="345" cy="270" r="3" fill="#e5e7eb" style="animation-delay:3.27s"/>
+<circle class="n" cx="380" cy="270" r="3" fill="#e5e7eb" style="animation-delay:2.57s"/>
+<circle class="n" cx="416" cy="270" r="3" fill="#e5e7eb" style="animation-delay:2.87s"/>
+<circle class="n" cx="452" cy="270" r="3" fill="#e5e7eb" style="animation-delay:0.85s"/>
+<rect class="g" x="57" y="217" width="14" height="14" rx="3" fill="#0b1026" stroke="#22d3ee" stroke-width="2" style="animation-delay:3.60s"/>
+<rect class="g" x="105" y="217" width="14" height="14" rx="3" fill="#0b1026" stroke="#34d399" stroke-width="2" style="animation-delay:3.91s"/>
+<rect class="g" x="152" y="217" width="14" height="14" rx="3" fill="#0b1026" stroke="#f59e0b" stroke-width="2" style="animation-delay:3.91s"/>
+<rect class="g" x="200" y="217" width="14" height="14" rx="3" fill="#0b1026" stroke="#7c5cff" stroke-width="2" style="animation-delay:1.05s"/>
+<rect class="g" x="248" y="217" width="14" height="14" rx="3" fill="#0b1026" stroke="#f59e0b" stroke-width="2" style="animation-delay:3.42s"/>
+<rect class="g" x="296" y="217" width="14" height="14" rx="3" fill="#0b1026" stroke="#22d3ee" stroke-width="2" style="animation-delay:2.02s"/>
+<rect class="g" x="344" y="217" width="14" height="14" rx="3" fill="#0b1026" stroke="#34d399" stroke-width="2" style="animation-delay:1.76s"/>
+<rect class="g" x="391" y="217" width="14" height="14" rx="3" fill="#0b1026" stroke="#f59e0b" stroke-width="2" style="animation-delay:1.69s"/>
+<rect class="g" x="439" y="217" width="14" height="14" rx="3" fill="#0b1026" stroke="#22d3ee" stroke-width="2" style="animation-delay:1.95s"/>
+<rect class="g" x="64" y="171" width="14" height="14" rx="3" fill="#0b1026" stroke="#22d3ee" stroke-width="2" style="animation-delay:0.87s"/>
+<rect class="g" x="125" y="171" width="14" height="14" rx="3" fill="#0b1026" stroke="#22d3ee" stroke-width="2" style="animation-delay:1.72s"/>
+<rect class="g" x="187" y="171" width="14" height="14" rx="3" fill="#0b1026" stroke="#f59e0b" stroke-width="2" style="animation-delay:0.69s"/>
+<rect class="g" x="248" y="171" width="14" height="14" rx="3" fill="#0b1026" stroke="#f472b6" stroke-width="2" style="animation-delay:2.75s"/>
+<rect class="g" x="309" y="171" width="14" height="14" rx="3" fill="#0b1026" stroke="#34d399" stroke-width="2" style="animation-delay:1.88s"/>
+<rect class="g" x="371" y="171" width="14" height="14" rx="3" fill="#0b1026" stroke="#34d399" stroke-width="2" style="animation-delay:3.60s"/>
+<rect class="g" x="432" y="171" width="14" height="14" rx="3" fill="#0b1026" stroke="#7c5cff" stroke-width="2" style="animation-delay:3.36s"/>
+<rect class="g" x="76" y="125" width="14" height="14" rx="3" fill="#0b1026" stroke="#a78bfa" stroke-width="2" style="animation-delay:1.76s"/>
+<rect class="g" x="162" y="125" width="14" height="14" rx="3" fill="#0b1026" stroke="#7c5cff" stroke-width="2" style="animation-delay:2.32s"/>
+<rect class="g" x="248" y="125" width="14" height="14" rx="3" fill="#0b1026" stroke="#f472b6" stroke-width="2" style="animation-delay:0.34s"/>
+<rect class="g" x="334" y="125" width="14" height="14" rx="3" fill="#0b1026" stroke="#34d399" stroke-width="2" style="animation-delay:1.76s"/>
+<rect class="g" x="420" y="125" width="14" height="14" rx="3" fill="#0b1026" stroke="#7c5cff" stroke-width="2" style="animation-delay:1.16s"/>
+<rect class="g" x="105" y="79" width="14" height="14" rx="3" fill="#0b1026" stroke="#f472b6" stroke-width="2" style="animation-delay:2.25s"/>
+<rect class="g" x="248" y="79" width="14" height="14" rx="3" fill="#0b1026" stroke="#34d399" stroke-width="2" style="animation-delay:2.09s"/>
+<rect class="g" x="391" y="79" width="14" height="14" rx="3" fill="#0b1026" stroke="#7c5cff" stroke-width="2" style="animation-delay:1.03s"/>
+<rect class="g" x="248" y="33" width="14" height="14" rx="3" fill="#0b1026" stroke="#34d399" stroke-width="2" style="animation-delay:1.52s"/>
+<text x="520" y="98" font-size="40" fill="url(#tt)" font-weight="bold">Superlinear Wire Lower Bounds</text>
+<text x="520" y="146" font-size="34" fill="url(#tt)">for Gates of Fan-In N<tspan baseline-shift="super" font-size="22">1−δ</tspan></text>
+<text x="520" y="196" font-size="20" fill="#cbd5e1">a language in E<tspan baseline-shift="super" font-size="14">NP</tspan> needs more than c(δ) N √log N wires</text>
+<text x="520" y="226" font-size="20" fill="#cbd5e1">tensor-network counting in time 2<tspan baseline-shift="super" font-size="14">O(s/√log s)</tspan></text>
+<text x="520" y="266" font-size="17" fill="#94a3b8">Deep Bhattacharjee · Lean 4 · Julia · P versus NP remains open</text>
+</svg>

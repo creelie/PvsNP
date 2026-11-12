@@ -8,6 +8,7 @@ authors:
     affiliation: "Formerly, Electro-Gravitational Space Propulsion Laboratory (EGSPL), Bhubaneswar, Odisha 751030, India"
 license: MIT
 version: 2.0.0
+doi: 10.5281/zenodo.24163297
 identifiers:
   - type: doi
     value: 10.5281/zenodo.23934034

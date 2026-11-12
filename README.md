@@ -1,7 +1,7 @@
 <p align="center"><img src="assets/banner.svg" alt="Superlinear Wire Lower Bounds for Gates of Fan-In N^(1-δ)" width="100%"></p>
 
 <p align="center">
-  <a href="https://doi.org/10.5281/zenodo.23934034"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23934034-22d3ee?style=for-the-badge" alt="DOI"></a>
+  <a href="https://doi.org/10.5281/zenodo.24163297"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.24163297-22d3ee?style=for-the-badge" alt="DOI"></a>
   <a href="papers/PvsNPPaper.pdf"><img src="https://img.shields.io/badge/paper-PDF-f472b6?style=for-the-badge" alt="paper"></a>
   <img src="https://img.shields.io/badge/Lean_4-46_theorems-7c5cff?style=for-the-badge" alt="Lean 4">
   <img src="https://img.shields.io/badge/Julia-44_checks-34d399?style=for-the-badge" alt="Julia">
@@ -22,4 +22,10 @@
 | [`lean/`](lean) | Lean 4 project over Mathlib, axiom audit | `cd lean && lake exe cache get && lake build && lake env lean audit.lean` |
 | [`julia/`](julia) | finite statements and constants | `julia julia/run_all.jl` |
 
-All versions: [10.5281/zenodo.23934034](https://doi.org/10.5281/zenodo.23934034). Contact: egspl@proton.me.
+| Release | DOI |
+| :--- | :--- |
+| v2.0.0 | [10.5281/zenodo.24163297](https://doi.org/10.5281/zenodo.24163297) |
+| v1.0.0 | [10.5281/zenodo.23934035](https://doi.org/10.5281/zenodo.23934035) |
+| all versions | [10.5281/zenodo.23934034](https://doi.org/10.5281/zenodo.23934034) |
+
+ Contact: egspl@proton.me.
